@@ -55,7 +55,7 @@
     }
 
     .topbar-inner {
-      min-height: 78px;
+      min-height: 82px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -64,13 +64,32 @@
 
     .brand {
       display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.75);
+      padding: 8px;
+      box-shadow: 0 8px 24px rgba(30, 20, 14, 0.08);
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
       flex-direction: column;
       gap: 2px;
       font-weight: 800;
       line-height: 1.1;
+      min-width: 0;
     }
 
-    .brand small {
+    .brand-text small {
       font-size: 0.78rem;
       color: var(--muted);
       font-weight: 600;
@@ -91,11 +110,20 @@
     }
 
     .hero-shell {
-      background: linear-gradient(135deg, rgba(93,32,29,0.94), rgba(27,18,16,0.96));
+      background: linear-gradient(135deg, rgba(93,32,29,0.96), rgba(27,18,16,0.98));
       border-radius: 34px;
       overflow: hidden;
       box-shadow: var(--shadow-strong);
       border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(216,176,118,0.22), transparent 30%);
+      pointer-events: none;
     }
 
     .hero-grid {
@@ -103,6 +131,8 @@
       grid-template-columns: 1.05fr 0.95fr;
       gap: 0;
       align-items: stretch;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-copy {
@@ -127,13 +157,13 @@
     h1, h2, h3, h4 { line-height: 1.12; margin: 0 0 16px; }
 
     h1 {
-      font-size: clamp(2.6rem, 5vw, 5rem);
+      font-size: clamp(2.7rem, 5vw, 5.3rem);
       letter-spacing: -0.05em;
       max-width: 12ch;
     }
 
     h2 {
-      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      font-size: clamp(1.85rem, 3vw, 2.8rem);
       letter-spacing: -0.03em;
     }
 
@@ -240,7 +270,8 @@
     .section-band-dark .project,
     .section-band-dark .timeline-year,
     .section-band-dark .team-card,
-    .section-band-dark .contact-card {
+    .section-band-dark .contact-card,
+    .section-band-dark .highlight-card {
       background: rgba(255,255,255,0.04);
       border-color: rgba(255,255,255,0.08);
       box-shadow: none;
@@ -262,21 +293,12 @@
     .contact-card,
     .highlight-card,
     .gallery-note,
-    .memorial {
+    .memorial,
+    .cta-panel {
       background: rgba(255, 250, 244, 0.92);
       border: 1px solid rgba(93,32,29,0.08);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-    }
-
-    .card,
-    .project,
-    .team-card,
-    .timeline-year,
-    .contact-card,
-    .highlight-card,
-    .gallery-note,
-    .memorial {
       padding: 28px;
     }
 
@@ -454,6 +476,27 @@
       font-size: 0.92rem;
     }
 
+    .cta-panel {
+      margin-top: 28px;
+      background: linear-gradient(135deg, rgba(93,32,29,0.94), rgba(155,93,46,0.92));
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .cta-panel p {
+      color: var(--muted-light);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    .cta-panel .btn-secondary {
+      background: rgba(255,255,255,0.12);
+    }
+
     .footer {
       padding: 36px 0 52px;
       color: var(--muted);
@@ -499,6 +542,15 @@
         align-items: flex-start;
       }
 
+      .brand {
+        align-items: flex-start;
+      }
+
+      .brand-logo {
+        width: 56px;
+        height: 56px;
+      }
+
       .hero-copy,
       .card,
       .project,
@@ -507,7 +559,8 @@
       .contact-card,
       .highlight-card,
       .gallery-note,
-      .memorial {
+      .memorial,
+      .cta-panel {
         padding: 22px;
       }
 
@@ -530,8 +583,11 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <a href="#home" class="brand">
-        Instituto Palco Cultura
-        <small>Arte, cidadania e transformação social</small>
+        <img class="brand-logo" src="https://palcocultura.com.br/wp-content/uploads/2026/04/Logo-Palco-01.png" alt="Logo Instituto Palco Cultura" />
+        <span class="brand-text">
+          Instituto Palco Cultura
+          <small>Arte, cidadania e transformação social</small>
+        </span>
       </a>
       <nav class="nav">
         <a href="#home">Home</a>
@@ -926,6 +982,14 @@
             </ul>
             <a class="drive-link" href="https://drive.google.com/file/d/1QGPS3y5PkW1KTv-rs4-Tp3YJbCFgUaWR/view?usp=drivesdk" target="_blank" rel="noreferrer">Ver material</a>
           </article>
+        </div>
+
+        <div class="cta-panel">
+          <div>
+            <h3>Entre em contato e faça parte dessa transformação.</h3>
+            <p>O Instituto Palco Cultura segue aberto a diálogos, parcerias, apoios e conexões que fortaleçam a arte, a cidadania e o desenvolvimento comunitário.</p>
+          </div>
+          <a class="btn btn-secondary" href="#contato">Ir para contato</a>
         </div>
       </div>
     </section>
