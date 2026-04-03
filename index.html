@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palco em Cena</title>
+  <meta name="description" content="Palco em Cena: arte, formação e transformação cultural por meio das artes cênicas." />
+  <style>
+    :root {
+      --bg: #f5f1eb;
+      --surface: #fffaf5;
+      --text: #1f1a17;
+      --muted: #665c55;
+      --primary: #7a2e2e;
+      --primary-2: #b26a3c;
+      --line: rgba(31, 26, 23, 0.1);
+      --shadow: 0 18px 40px rgba(34, 23, 18, 0.12);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: linear-gradient(180deg, #f6f0ea 0%, #f8f4ef 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(245, 241, 235, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 76px;
+    }
+
+    .brand {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      border-color: rgba(122, 46, 46, 0.18);
+      background: rgba(255,255,255,0.55);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 74px 0 46px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .section-card,
+    .gallery-card,
+    .contact-card,
+    .quote-card {
+      background: rgba(255, 250, 245, 0.88);
+      border: 1px solid rgba(122, 46, 46, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(122, 46, 46, 0.08);
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 { line-height: 1.1; margin: 0 0 16px; }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.9rem);
+      letter-spacing: -0.04em;
+    }
+
+    .hero-copy p {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 100%;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(32,22,19,0.15), rgba(32,22,19,0.55)),
+        radial-gradient(circle at top, rgba(178,106,60,0.45), transparent 46%),
+        url('https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1200&q=80') center/cover;
+      display: flex;
+      align-items: end;
+      min-height: 560px;
+    }
+
+    .hero-card-content {
+      padding: 28px;
+      color: #fff8f1;
+    }
+
+    .hero-card-content strong {
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+
+    main section {
+      padding: 32px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 22px;
+    }
+
+    .section-heading p {
+      max-width: 70ch;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .section-card {
+      padding: 34px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .impact-item {
+      padding: 24px;
+      border-radius: 20px;
+      background: rgba(122, 46, 46, 0.04);
+      border: 1px solid rgba(122, 46, 46, 0.08);
+    }
+
+    .impact-item h3 {
+      margin-bottom: 10px;
+      font-size: 1.16rem;
+    }
+
+    .impact-item p,
+    .section-card p,
+    .contact-list,
+    .quote-card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .quote-card {
+      padding: 28px;
+      background: linear-gradient(135deg, rgba(122,46,46,0.08), rgba(178,106,60,0.08));
+    }
+
+    .quote-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      gap: 18px;
+    }
+
+    .gallery-card {
+      min-height: 250px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 24px;
+    }
+
+    .gallery-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(20,14,12,0.04), rgba(20,14,12,0.22));
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-card.tall { min-height: 520px; }
+
+    .institutional {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .info-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(122, 46, 46, 0.07);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 22px;
+    }
+
+    .contact-card {
+      padding: 32px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .footer {
+      padding: 34px 0 54px;
+      color: var(--muted);
+    }
+
+    .footer-box {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-2,
+      .impact-grid,
+      .institutional,
+      .contact-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: 420px;
+      }
+
+      .gallery-card.tall {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner {
+        min-height: auto;
+        padding: 16px 0;
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .hero-copy,
+      .section-card,
+      .contact-card,
+      .quote-card {
+        padding: 24px;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .nav {
+        gap: 12px;
+        font-size: 0.92rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#inicio" class="brand">Palco em Cena</a>
+      <nav class="nav">
+        <a href="#sobre">Sobre</a>
+        <a href="#impacto">Impacto</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#institucional">Institucional</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Projeto cultural</span>
+          <h1>Palco em Cena: arte, formação e transformação cultural</h1>
+          <p>
+            Um projeto cultural que promove expressão, encontro e impacto social por meio das artes cênicas,
+            fortalecendo trajetórias, territórios e conexões com a comunidade.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contato">Fale conosco</a>
+            <a class="btn btn-secondary" href="#sobre">Conheça o projeto</a>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-label="Imagem de destaque do projeto cultural">
+          <div class="hero-card-content">
+            <strong>Arte que aproxima, forma e transforma.</strong>
+            <span>Um espaço de criação, troca e fortalecimento de vínculos por meio das artes cênicas.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container grid-2">
+        <div class="section-card">
+          <div class="section-heading">
+            <span class="eyebrow">Sobre o projeto</span>
+            <h2>Uma iniciativa voltada à valorização da arte e da experiência coletiva</h2>
+          </div>
+          <p>
+            O Palco em Cena é um projeto cultural voltado à valorização da arte, da formação e da experiência coletiva.
+            A iniciativa nasce como espaço de criação, troca e fortalecimento de vínculos por meio das artes cênicas,
+            promovendo acesso, expressão e participação cultural.
+          </p>
+          <br />
+          <p>
+            Seu propósito é ampliar oportunidades, estimular vivências artísticas e contribuir para o desenvolvimento
+            cultural e social da comunidade.
+          </p>
+        </div>
+
+        <div class="quote-card">
+          <strong>Essência</strong>
+          <p>
+            O projeto se constrói a partir de encontros, escuta, criação e presença. Mais do que apresentar ações,
+            o Palco em Cena reafirma a cultura como experiência viva, coletiva e transformadora.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="impacto">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Propósito e impacto</span>
+          <h2>Cultura que movimenta pessoas e territórios</h2>
+          <p>
+            A arte como caminho de formação, pertencimento, expressão e fortalecimento comunitário.
+          </p>
+        </div>
+
+        <div class="impact-grid">
+          <article class="impact-item">
+            <h3>Formação artística</h3>
+            <p>Incentivo ao aprendizado, à vivência criativa e ao desenvolvimento de novas possibilidades por meio da arte.</p>
+          </article>
+          <article class="impact-item">
+            <h3>Impacto social</h3>
+            <p>A cultura como ferramenta de transformação, pertencimento e fortalecimento comunitário.</p>
+          </article>
+          <article class="impact-item">
+            <h3>Valorização da expressão</h3>
+            <p>Um espaço para ampliar vozes, experiências e trajetórias através das artes cênicas.</p>
+          </article>
+          <article class="impact-item">
+            <h3>Conexão com a comunidade</h3>
+            <p>Atividades e ações que aproximam pessoas, promovem diálogo e fortalecem o acesso cultural.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container institutional">
+        <div class="section-card">
+          <div class="section-heading">
+            <span class="eyebrow">Trajetória</span>
+            <h2>Experiências, encontros e ações que fortalecem a presença da arte</h2>
+          </div>
+          <p>
+            O Palco em Cena se constrói a partir de experiências, encontros e ações que fortalecem a presença da arte
+            na vida das pessoas. Sua trajetória reafirma o compromisso com a formação, a expressão artística e o impacto cultural
+            em diálogo com a comunidade.
+          </p>
+        </div>
+
+        <div class="section-card" id="institucional">
+          <div class="section-heading">
+            <span class="eyebrow">Institucional</span>
+            <h2>Reconhecimento e fortalecimento cultural</h2>
+          </div>
+          <p>
+            O projeto Palco em Cena também se conecta a iniciativas de incentivo e fortalecimento da cultura,
+            como o Prêmio PNAB, reafirmando seu compromisso com a arte, a formação e o impacto social.
+          </p>
+          <a class="info-badge" href="https://drive.google.com/file/d/1QGPS3y5PkW1KTv-rs4-Tp3YJbCFgUaWR/view?usp=drivesdk" target="_blank" rel="noreferrer">
+            Acessar material complementar do projeto
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Galeria</span>
+          <h2>Imagens do projeto</h2>
+          <p>
+            Registros que traduzem a energia, a sensibilidade e a potência do Palco em Cena em suas ações,
+            encontros e experiências culturais.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-card tall">
+            <img src="https://images.unsplash.com/photo-1507924538820-ede94a04019d?auto=format&fit=crop&w=1200&q=80" alt="Pessoas em apresentação cultural" />
+          </div>
+          <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80" alt="Palco iluminado em evento artístico" />
+          </div>
+          <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=1200&q=80" alt="Apresentação artística com iluminação cênica" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <div class="section-heading">
+            <span class="eyebrow">Contato</span>
+            <h2>Fale conosco</h2>
+            <p>Estamos sempre abertos ao diálogo, dúvidas, sugestões e parcerias.</p>
+          </div>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <strong>E-mail</strong>
+              <span>palcoemcena2016@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <strong>Telefones</strong>
+              <span>(61) 98417-6112 / (61) 98433-0740 / (61) 98616-4395</span>
+            </div>
+            <div class="contact-item">
+              <strong>Endereço</strong>
+              <span>Inserir localização</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-card">
+          <strong>Parcerias e diálogo</strong>
+          <p>
+            O Palco em Cena segue aberto a conexões com instituições, coletivos, artistas, apoiadores e pessoas que acreditam
+            na cultura como força de encontro, expressão e transformação.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-box">
+      <div>
+        <strong>Palco em Cena</strong><br />
+        Projeto cultural voltado à arte, formação e transformação social.
+      </div>
+      <div>
+        palcoemcena2016@gmail.com<br />
+        (61) 98417-6112 / (61) 98433-0740 / (61) 98616-4395
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
